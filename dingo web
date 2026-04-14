@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DINGO SYSTEMES - TERMINAL DE RECHERCHE MONDIAL 1996</title>
+    <style>
+        /* CSS MASSIF POUR UN LOOK PROFESSIONNEL 1996 */
+        :root {
+            --win-gray: #c0c0c0;
+            --win-blue: #000080;
+            --win-border-light: #ffffff;
+            --win-border-dark: #808080;
+            --dingo-green: #00ff00;
+        }
+
+        body { 
+            background-color: #008080; 
+            font-family: "MS Sans Serif", "Arial", sans-serif; 
+            margin: 0; 
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Cadre principal style OS */
+        .desktop-window {
+            width: 100%;
+            max-width: 900px;
+            background: var(--win-gray);
+            border: 3px outset var(--win-border-light);
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .title-bar {
+            background: linear-gradient(90deg, var(--win-blue), #1084d0);
+            color: white;
+            padding: 5px 10px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .description-banner {
+            background: #ffff00;
+            color: #000;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: 2px solid #000;
+            text-transform: uppercase;
+        }
+
+        .nav-bar {
+            padding: 10px;
+            background: var(--win-gray);
+            border-bottom: 2px groove var(--win-border-light);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .address-field {
+            background: #fff;
+            border: 2px inset var(--win-border-dark);
+            padding: 5px;
+            flex-grow: 1;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        .dingo-btn-main {
+            background: var(--win-gray);
+            border: 2px outset var(--win-border-light);
+            padding: 5px 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .dingo-btn-main:active { border: 2px inset var(--win-border-light); }
+
+        /* Contenu de la page */
+        .page-body {
+            background: #fff;
+            margin: 15px;
+            border: 2px inset var(--win-border-dark);
+            min-height: 600px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .search-engine {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .logo {
+            font-family: "Times New Roman", serif;
+            font-size: 60px;
+            font-weight: bold;
+            color: var(--win-blue);
+            text-shadow: 2px 2px #ccc;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            background: #f1f1f1;
+            padding: 30px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            width: 80%;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 15px;
+            font-size: 20px;
+            border: 2px inset var(--win-gray);
+            font-family: "Courier New", monospace;
+        }
+
+        .action-btns { margin-top: 20px; }
+
+        /* Chargement */
+        #loader {
+            display: none;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .progress-container {
+            width: 80%;
+            height: 30px;
+            border: 2px inset #fff;
+            background: #808080;
+            margin: 20px auto;
+            display: flex;
+            padding: 2px;
+        }
+
+        .block {
+            flex: 1;
+            background: var(--win-blue);
+            margin-right: 2px;
+            display: none;
+        }
+
+        /* Résultats */
+        #result-display {
+            display: none;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 2px solid var(--win-blue);
+            text-align: left;
+        }
+
+        /* Panneau Admin Secret */
+        #admin-panel {
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            background: var(--win-gray);
+            border: 3px outset #fff;
+            padding: 20px;
+            z-index: 1000;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        .admin-header {
+            background: var(--win-blue);
+            color: white;
+            padding: 5px;
+            margin: -20px -20px 20px -20px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="desktop-window">
+    <div class="title-bar">
+        <span>DINGO-V TERMINAL DE RECHERCHE</span>
+        <span>[X]</span>
+    </div>
+
+    <div class="description-banner">
+        utiliser nous pour faire revivre l'epoque !!!
+    </div>
+
+    <div class="nav-bar">
+        <button class="dingo-btn-main" onclick="location.reload()">ACCUEIL</button>
+        <div class="address-field">HTTPPD://WWW.DINGO.CORP/SEEK_V1</div>
+        <button class="dingo-btn-main" onclick="demanderCode()">DINGO</button>
+    </div>
+
+    <div class="page-body">
+        
+        <div id="admin-panel">
+            <div class="admin-header">DINGO WEB RESEARCH - GESTION DES DONNÉES</div>
+            <p>Ajouter une réponse personnalisée :</p>
+            <label>Question :</label><br>
+            <input type="text" id="add-q" style="width:100%;"><br><br>
+            <label>Réponse :</label><br>
+            <textarea id="add-r" style="width:100%; height:80px;"></textarea><br><br>
+            <button class="dingo-btn-main" onclick="sauvegarderDonnee()">SAUVEGARDER</button>
+            <button class="dingo-btn-main" onclick="fermerAdmin()" style="float:right;">FERMER</button>
+            <hr>
+            <div id="code-output" style="font-size:11px; color:#000; background:#fff; padding:5px; display:none;">
+                Collez ceci sur GitHub pour le rendre mondial : <br>
+                <code id="code-text" style="color:red;"></code>
+            </div>
+        </div>
+
+        <div class="search-engine">
+            <div class="logo">DINGO-SEEK</div>
+            <div class="tagline">L'informatique intelligente depuis 1996</div>
+            
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Tapez votre recherche...">
+                <div class="action-btns">
+                    <button class="dingo-btn-main" onclick="lancerLaRecherche()">LANCER DINGO</button>
+                    <button class="dingo-btn-main">DWR MYSTERY</button>
+                </div>
+                <p style="font-size:12px; color:#888; margin-top:15px;">taper Dingo et vous aller voir ce mystère DWR</p>
+            </div>
+        </div>
+
+        <div id="loader">
+            <p>REQUÊTE EN COURS SUR LE RÉSEAU MONDIAL...</p>
+            <div class="progress-container">
+                <div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div>
+                <div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div>
+                <div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div>
+            </div>
+            <p><small>Transfert via Modem 33.6Kbps...</small></p>
+        </div>
+
+        <div id="result-display">
+            <h2 id="res-title" style="color:var(--win-blue);"></h2>
+            <div id="res-content" style="font-size:18px; line-height:1.6;"></div>
+            <br>
+            <button class="dingo-btn-main" onclick="location.reload()">NOUVELLE RECHERCHE</button>
+        </div>
+
+        <footer>
+            Dingo Systems International &copy; 1996 - Protocole HTTPPD Certifié
+        </footer>
+    </div>
+</div>
+
+<script>
+    /* ============================================================
+       BASE DE DONNÉES - PARTIE MONDIALE (MODIFIE ICI SUR GITHUB)
+       ============================================================ */
+    const BASE_MONDIALE = {
+        "dingo": "<strong>MYSTÈRE DWR ACTIVÉ :</strong> Vous avez trouvé la porte dérobée. Le futur se construit ici.",
+        "bonjour": "Bonjour ! Le réseau Dingo vous souhaite la bienvenue.",
+        // AJOUTE TES LIGNES ICI :
+        
+    };
+    /* ============================================================ */
+
+    // Récupération des données locales (pour tes tests)
+    let baseLocale = JSON.parse(localStorage.getItem('dingo_local_db')) || {};
+
+    function demanderCode() {
+        let code = prompt("Veuillez entrer le code de sécurité DINGO :");
+        if(code === "1966196619661966") {
+            document.getElementById('admin-panel').style.display = 'block';
+        } else {
+            alert("ACCÈS REFUSÉ !");
+        }
+    }
+
+    function fermerAdmin() {
+        document.getElementById('admin-panel').style.display = 'none';
+    }
+
+    function sauvegarderDonnee() {
+        let q = document.getElementById('add-q').value.toLowerCase().trim();
+        let r = document.getElementById('add-r').value.trim();
+        
+        if(q && r) {
+            // Sauvegarde locale
+            baseLocale[q] = r;
+            localStorage.setItem('dingo_local_db', JSON.stringify(baseLocale));
+            
+            // Génération du code pour GitHub
+            document.getElementById('code-output').style.display = 'block';
+            document.getElementById('code-text').innerText = '"' + q + '": "' + r + '",';
+            
+            alert("Enregistré localement ! Copie la ligne rouge pour la mettre sur GitHub.");
+        }
+    }
+
+    function lancerLaRecherche() {
+        let q = document.getElementById('search-input').value.toLowerCase().trim();
+        if(!q) return;
+
+        // Cacher le reste
+        document.querySelector('.search-engine').style.display = 'none';
+        document.getElementById('loader').style.display = 'block';
+
+        // Animation de la barre
+        let blocks = document.querySelectorAll('.block');
+        let i = 0;
+        let speed = 300; // Total 4.5 - 5 secondes
+
+        let interval = setInterval(() => {
+            if(i < blocks.length) {
+                blocks[i].style.display = 'block';
+                i++;
+            } else {
+                clearInterval(interval);
+            }
+        }, speed);
+
+        // Affichage du résultat après 5 secondes
+        setTimeout(() => {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('result-display').style.display = 'block';
+            
+            let title = document.getElementById('res-title');
+            let content = document.getElementById('res-content');
+            
+            // On cherche d'abord dans la base mondiale, puis locale
+            let reponse = BASE_MONDIALE[q] || baseLocale[q];
+
+            if(reponse) {
+                title.innerText = "Résultat trouvé pour : " + q;
+                content.innerHTML = reponse;
+            } else {
+                title.innerText = "Erreur 404 - Dingo Seek";
+                content.innerText = "Désolé, aucune donnée pour '" + q + "'. Le serveur DWR n'a pas pu identifier la requête.";
+            }
+        }, 5000);
+    }
+</script>
+
+</body>
+</html>
